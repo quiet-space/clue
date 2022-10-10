@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header elevated v-if="false">
       <q-toolbar>
         <q-btn
           flat
@@ -20,6 +20,7 @@
     </q-header>
 
     <q-drawer
+      v-if="false"
       v-model="leftDrawerOpen"
       show-if-above
       bordered
@@ -40,13 +41,15 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <q-page class="flex flex-center">
+        <router-view/>
+      </q-page>
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
+import {defineComponent, ref} from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 
 const linksList = [
@@ -101,13 +104,13 @@ export default defineComponent({
     EssentialLink
   },
 
-  setup () {
+  setup() {
     const leftDrawerOpen = ref(false)
 
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
-      toggleLeftDrawer () {
+      toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value
       }
     }
